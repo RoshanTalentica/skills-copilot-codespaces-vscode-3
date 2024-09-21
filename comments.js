@@ -1,12 +1,25 @@
-const express = require('express');
-
-const app = express();
-const port = 3000;
-
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
-app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
-});
+//create webserver
+//create a server
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
+var path = require('path');
+//create the server
+http.createServer(function (req, res) {
+    var q = url.parse(req.url, true);
+    var filename = "." + q.pathname;
+    fs.readFile(filename, function (err, data) {
+        if (err) {
+            res.writeHead(404, { 'Content-Type': 'text/html' });
+            return res.end("404 Not Found");
+        }
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(data);
+        return res.end();
+    });
+}).listen(8080);
+//create a server
+var http = require('http');
+var fs = require('fs');
+var url = require('url');
+var path = require('path');
