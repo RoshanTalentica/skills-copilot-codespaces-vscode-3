@@ -60,6 +60,3 @@ app.get('/page/:pageId', function(request, response, next) {
     });
   });
 });
-app.get('/create', function(request, response) {
-  db.query(`SELECT * FROM topic`, function(error, topics){
-    db.query(`SELECT
